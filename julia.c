@@ -10,7 +10,7 @@
 int main(int argc, char **argv){
     complex float *grid;
     int *divergence_scores;
-    int numberOfElementsInGrid;
+    int number_of_elements_in_grid;
 
 
     struct arguments arguments;
@@ -38,14 +38,14 @@ int main(int argc, char **argv){
     z_imag = arguments.z_imag ? arguments.z_imag : 0.619998;
     z = z_real + z_imag * I;
 
-    numberOfElementsInGrid = ( max_r - min_r + resolution) * ( max_i - min_i + resolution) / ( resolution * resolution );
+    number_of_elements_in_grid = ( max_r - min_r + resolution) * ( max_i - min_i + resolution) / ( resolution * resolution );
    
-    grid = initialize_grid(min_r, max_r, min_i, max_i, resolution, numberOfElementsInGrid);
+    grid = initialize_grid(min_r, max_r, min_i, max_i, resolution, number_of_elements_in_grid);
     
-    divergence_scores = score_grid(grid, numberOfElementsInGrid, z);
+    divergence_scores = score_grid(grid, number_of_elements_in_grid, z);
 
     int i=0;
-    while (i<= numberOfElementsInGrid){ // should this be just < ?
+    while (i<= number_of_elements_in_grid){ // should this be just < ?
         printf("%f\t%f\t%d\n", creal(grid[i]), cimag(grid[i]), divergence_scores[i]);
         i++;
     }
@@ -70,25 +70,25 @@ int check_for_convergence(complex float cnum, complex float z){
     return i;
 }
 
-int* score_grid(complex float grid[], int numberOfElementsInGrid, complex float z){
+int* score_grid(complex float grid[], int number_of_elements_in_grid, complex float z){
     int *divergence_scores;
-    divergence_scores = (int*)malloc(numberOfElementsInGrid * sizeof(int));
+    divergence_scores = (int*)malloc(number_of_elements_in_grid * sizeof(int));
     
     int i = 0;
-    while ( i < numberOfElementsInGrid ){
+    while ( i < number_of_elements_in_grid ){
         divergence_scores[i] = check_for_convergence(grid[i], z);
         i++;
     }
     return divergence_scores;
 }
 
-complex float* initialize_grid(float min_r, float max_r, float min_i, float max_i, float resolution, int numberOfElementsInGrid){
-    printf("initializing grid with %d", &numberOfElementsInGrid);
+complex float* initialize_grid(float min_r, float max_r, float min_i, float max_i, float resolution, int number_of_elements_in_grid){
+    printf("initializing grid with %d", &number_of_elements_in_grid);
     complex float *grid;
     float real_component;
     float imaginary_component;
 
-    grid = (complex float*)malloc(numberOfElementsInGrid * sizeof(complex float));
+    grid = (complex float*)malloc(number_of_elements_in_grid * sizeof(complex float));
 
     int i = 0;
     real_component = min_r;
