@@ -3,68 +3,20 @@
 #include <stdio.h>
 #include <complex.h>
 
+#include "julia.h"
 #include "argparse.h"
 
-complex float* initialize_grid(float min_r, float max_r, float min_i, float max_i, float resolution, int numberOfElementsInGrid);
-int* filter_for_mandelbrot(complex float grid[], int numberOfElementsInGrid, complex float z);
-int check_for_convergence(complex float cnum, complex float z);
 
-struct arguments{
-    char *args[1];
-    float z_real, z_imag, resolution, min_r, max_r, min_i, max_i;
-};
-
-static char args_doc[] = "";
-
-static error_t parse_opt(int key, char *arg, struct argp_state *state){
-    
-    struct arguments *arguments = state->input;
-    char *end;
-    switch (key){
-        case 'r':
-            arguments->z_real = strtof(arg, &end);
-            break;
-        case 'i':
-            arguments->z_imag = strtof(arg, &end);
-            break;
-        case 's':
-            arguments->resolution = strtof(arg, &end);
-            break;
-        case 't':
-            arguments->min_r = strtof(arg, &end);
-            break;
-        case 'u':
-            arguments->max_r = strtof(arg, &end);
-            break;
-        case 'v':
-            arguments->min_i = strtof(arg, &end);
-            break;
-        case 'w':
-            arguments->max_i = strtof(arg, &end);
-            break;
-        case ARGP_KEY_ARG:
-            if (state->arg_num <= 8){
-                argp_usage(state);
-            }
-            arguments->args[state->arg_num] = arg;
-            &state->argv[state->next];
-            break;
-        case ARGP_KEY_END:
-            break;
-        default:
-            return ARGP_ERR_UNKNOWN;
-    }
-    return 0;
-}
 
 static struct argp argp = { options, parse_opt, args_doc, 0, 0, 0 };
 
 int main(int argc, char **argv){
-    struct arguments arguments;
     complex float *grid;
     int *mandelbrot;
     int numberOfElementsInGrid;
 
+
+    struct arguments arguments;
     arguments.resolution = 0;
     arguments.min_r = 0;
     arguments.max_r = 0;
