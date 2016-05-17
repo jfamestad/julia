@@ -7,12 +7,9 @@
 #include "argparse.h"
 
 
-
-static struct argp argp = { options, parse_opt, args_doc, 0, 0, 0 };
-
 int main(int argc, char **argv){
     complex float *grid;
-    int *mandelbrot;
+    int *divergence_scores;
     int numberOfElementsInGrid;
 
 
@@ -45,11 +42,11 @@ int main(int argc, char **argv){
    
     grid = initialize_grid(min_r, max_r, min_i, max_i, resolution, numberOfElementsInGrid);
     
-    mandelbrot = filter_for_mandelbrot(grid, numberOfElementsInGrid, z);
+    divergence_scores = score_grid(grid, numberOfElementsInGrid, z);
 
     int i=0;
-    while (i<= numberOfElementsInGrid){
-        printf("%f\t%f\t%d\n", creal(grid[i]), cimag(grid[i]), mandelbrot[i]);
+    while (i<= numberOfElementsInGrid){ // should this be just < ?
+        printf("%f\t%f\t%d\n", creal(grid[i]), cimag(grid[i]), divergence_scores[i]);
         i++;
     }
 
@@ -73,16 +70,16 @@ int check_for_convergence(complex float cnum, complex float z){
     return i;
 }
 
-int* filter_for_mandelbrot(complex float grid[], int numberOfElementsInGrid, complex float z){
-    int *mandelbrot;
-    mandelbrot = (int*)malloc(numberOfElementsInGrid * sizeof(int));
+int* score_grid(complex float grid[], int numberOfElementsInGrid, complex float z){
+    int *divergence_scores;
+    divergence_scores = (int*)malloc(numberOfElementsInGrid * sizeof(int));
     
     int i = 0;
     while ( i < numberOfElementsInGrid ){
-        mandelbrot[i] = check_for_convergence(grid[i], z);
+        divergence_scores[i] = check_for_convergence(grid[i], z);
         i++;
     }
-    return mandelbrot;
+    return divergence_scores;
 }
 
 complex float* initialize_grid(float min_r, float max_r, float min_i, float max_i, float resolution, int numberOfElementsInGrid){
