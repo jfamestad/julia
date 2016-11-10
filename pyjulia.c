@@ -4,9 +4,9 @@
 #include "julia.c"
 
 static PyObject *julia_Julia(PyObject* self, PyObject *args){
-    float MIN_R, MAX_R, MIN_I, MAX_I, RESOLUTION;
-    complex float Z;
-
+    PyFloatObject MIN_R, MAX_R, MIN_I, MAX_I, RESOLUTION;
+    PyComplexObject Z;
+    
     if(!PyArg_ParseTuple(args, "fffffD", &MIN_R, &MAX_R, &MIN_I, &MAX_I, &RESOLUTION, &Z)){
         return NULL;
     }
