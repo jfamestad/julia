@@ -1,2 +1,2 @@
 julia: julia.c
-	gcc -o julia julia.c -lm
+	gcc -o julia main.c -lm
