@@ -8,10 +8,6 @@
 
 
 int main(int argc, char **argv){
-    complex float *grid;
-    int *divergence_scores;
-    int number_of_elements_in_grid;
-
 
     struct arguments arguments;
     arguments.resolution = 0;
@@ -38,10 +34,16 @@ int main(int argc, char **argv){
     z_imag = arguments.z_imag ? arguments.z_imag : 0.619998;
     z = z_real + z_imag * I;
 
+    run_program(min_r, max_r, min_i, max_i, z, resolution);
+    return 0;
+}
+
+int run_program(float min_r, float max_r, float min_i, float max_i, complex float z, float resolution){
+    complex float *grid;
+    int number_of_elements_in_grid;
+    int *divergence_scores;
     number_of_elements_in_grid = ( max_r - min_r + resolution) * ( max_i - min_i + resolution) / ( resolution * resolution );
-   
     grid = initialize_grid(min_r, max_r, min_i, max_i, resolution, number_of_elements_in_grid);
-    
     divergence_scores = score_grid(grid, number_of_elements_in_grid, z);
 
     int i=0;
