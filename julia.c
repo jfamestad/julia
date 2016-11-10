@@ -1,10 +1,8 @@
 #include <stdlib.h>
-#include <argp.h>
 #include <stdio.h>
 #include <complex.h>
 
 #include "julia.h"
-#include "argparse.h"
 
 
 int run_program(float min_r, float max_r, float min_i, float max_i, complex float z, float resolution){
