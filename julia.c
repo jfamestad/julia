@@ -52,7 +52,7 @@ int* score_grid(complex float grid[], int number_of_elements_in_grid, complex fl
 }
 
 complex float* initialize_grid(float min_r, float max_r, float min_i, float max_i, float resolution, int number_of_elements_in_grid){
-    printf("initializing grid with %d", &number_of_elements_in_grid);
+    printf("initializing grid with %d", number_of_elements_in_grid);
     complex float *grid;
     float real_component;
     float imaginary_component;
