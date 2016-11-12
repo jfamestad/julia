@@ -3,13 +3,18 @@
 #include <complex.h>
 #include "julia.c"
 
-static PyObject *julia_Julia(PyObject* self, PyObject *args){
-    PyFloatObject MIN_R, MAX_R, MIN_I, MAX_I, RESOLUTION;
-    PyComplexObject Z;
-    
-    if(!PyArg_ParseTuple(args, "fffffD", &MIN_R, &MAX_R, &MIN_I, &MAX_I, &RESOLUTION, &Z)){
+static PyObject *julia_Julia(PyObject *self, PyObject *args){
+
+    double min_r, max_r, min_i, max_i, resolution;
+    Py_complex z;
+    complex float Z;
+
+    if(!PyArg_ParseTuple(args, "ddddDd", &min_r, &max_r, &min_i, &max_i, &z, &resolution)){
         return NULL;
     }
+
+    Z = z.real + z.imag * I;
+    run_program(min_r, max_r, min_i, max_i, Z, resolution);
 
     Py_RETURN_NONE;
 }
