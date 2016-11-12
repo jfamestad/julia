@@ -3,7 +3,7 @@
 #include <complex.h>
 #include "julia.c"
 
-static PyObject *julia_Julia(PyObject *self, PyObject *args){
+static PyObject *_julia_Julia(PyObject *self, PyObject *args){
 
     double min_r, max_r, min_i, max_i, resolution;
     Py_complex z;
@@ -40,12 +40,12 @@ static PyObject *julia_Julia(PyObject *self, PyObject *args){
     return result;
 }
 
-static PyMethodDef julia_methods[] = {
-    { "_Julia", (PyCFunction)julia_Julia, METH_NOARGS, NULL },
-    { "_Julia", julia_Julia, METH_VARARGS, NULL },
+static PyMethodDef _julia_methods[] = {
+    { "Julia", (PyCFunction)_julia_Julia, METH_NOARGS, NULL },
+    { "Julia", _julia_Julia, METH_VARARGS, NULL },
     { NULL, NULL, 0, NULL }
 };
 
-PyMODINIT_FUNC initjulia(void){
-    Py_InitModule3("julia", julia_methods, "Julia Set generation utility");
+PyMODINIT_FUNC init_julia(void){
+    Py_InitModule3("_julia", _julia_methods, "C extension for Julia Set generation utility");
 }
