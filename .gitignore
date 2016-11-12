@@ -2,3 +2,5 @@ julia
 *out
 build
 test.py
+*.pyc
+pyjulia.py
