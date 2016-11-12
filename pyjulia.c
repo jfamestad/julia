@@ -15,8 +15,6 @@ static PyObject *julia_Julia(PyObject *self, PyObject *args){
 
     Z = z.real + z.imag * I;
 
-    //printf("Got Input: %f %f %f %f %f %f+%fi", min_r, max_r, min_i, max_i, creal(Z), cimag(Z), resolution);
-
     complex float *grid;
     int number_of_elements_in_grid;
     int *divergence_scores;
