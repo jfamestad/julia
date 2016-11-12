@@ -41,8 +41,8 @@ static PyObject *julia_Julia(PyObject *self, PyObject *args){
 }
 
 static PyMethodDef julia_methods[] = {
-    { "Julia", (PyCFunction)julia_Julia, METH_NOARGS, NULL },
-    { "Julia", julia_Julia, METH_VARARGS, NULL },
+    { "_Julia", (PyCFunction)julia_Julia, METH_NOARGS, NULL },
+    { "_Julia", julia_Julia, METH_VARARGS, NULL },
     { NULL, NULL, 0, NULL }
 };
 
