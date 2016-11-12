@@ -27,7 +27,7 @@ int check_for_convergence(complex float cnum, complex float z){
     int max_iterations = 100;
     int i = 0;
     while (i < max_iterations){
-        result = (result * result) + ( z * I );
+        result = (result * result) + ( z );
         if (cabsf(result) > bound){
             break;
         }
