@@ -15,6 +15,8 @@ static PyObject *julia_Julia(PyObject *self, PyObject *args){
 
     Z = z.real + z.imag * I;
 
+    //printf("Got Input: %f %f %f %f %f %f+%fi", min_r, max_r, min_i, max_i, creal(Z), cimag(Z), resolution);
+
     complex float *grid;
     int number_of_elements_in_grid;
     int *divergence_scores;
@@ -23,12 +25,6 @@ static PyObject *julia_Julia(PyObject *self, PyObject *args){
     grid = initialize_grid(min_r, max_r, min_i, max_i, resolution, number_of_elements_in_grid);
     divergence_scores = score_grid(grid, number_of_elements_in_grid, Z);
 
-    int i=0;
-    while (i<= number_of_elements_in_grid){ // should this be just < ?
-        printf("%f\t%f\t%d\n", creal(grid[i]), cimag(grid[i]), divergence_scores[i]);
-        i++;
-    }
-    
     PyObject* result;
     result = PyDict_New();
 
