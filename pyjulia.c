@@ -14,7 +14,19 @@ static PyObject *julia_Julia(PyObject *self, PyObject *args){
     }
 
     Z = z.real + z.imag * I;
-    run_program(min_r, max_r, min_i, max_i, Z, resolution);
+
+    complex float *grid;
+    int number_of_elements_in_grid;
+    int *divergence_scores;
+    number_of_elements_in_grid = ( max_r - min_r + resolution) * ( max_i - min_i + resolution) / ( resolution * resolution );
+    grid = initialize_grid(min_r, max_r, min_i, max_i, resolution, number_of_elements_in_grid);
+    divergence_scores = score_grid(grid, number_of_elements_in_grid, Z);
+
+    int i=0;
+    while (i<= number_of_elements_in_grid){ // should this be just < ?
+        printf("%f\t%f\t%d\n", creal(grid[i]), cimag(grid[i]), divergence_scores[i]);
+        i++;
+    }
 
     Py_RETURN_NONE;
 }
