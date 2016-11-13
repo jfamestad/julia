@@ -4,7 +4,7 @@
 
 struct arguments{
         char *args[1];
-        float z_real, z_imag, resolution, min_r, max_r, min_i, max_i;
+        double z_real, z_imag, resolution, min_r, max_r, min_i, max_i;
 };
 
 const char *argp_program_version = "julia 0.1";
@@ -28,25 +28,25 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state){
             char *end;
             switch (key){
                 case 'r':
-                    arguments->z_real = strtof(arg, &end);
+                    arguments->z_real = strtod(arg, &end);
                     break;
                 case 'i':
-                    arguments->z_imag = strtof(arg, &end);
+                    arguments->z_imag = strtod(arg, &end);
                     break;
                 case 's':
-                    arguments->resolution = strtof(arg, &end);
+                    arguments->resolution = strtod(arg, &end);
                      break;
                 case 't':
-                    arguments->min_r = strtof(arg, &end);
+                    arguments->min_r = strtod(arg, &end);
                     break;
                 case 'u':
-                    arguments->max_r = strtof(arg, &end);
+                    arguments->max_r = strtod(arg, &end);
                     break;
                 case 'v':
-                    arguments->min_i = strtof(arg, &end);
+                    arguments->min_i = strtod(arg, &end);
                     break;
                 case 'w':
-                        arguments->max_i = strtof(arg, &end);
+                        arguments->max_i = strtod(arg, &end);
                         break;
                 case ARGP_KEY_ARG:
                         if (state->arg_num <= 8){ 

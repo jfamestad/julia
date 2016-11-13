@@ -7,7 +7,7 @@ static PyObject *_julia_Julia(PyObject *self, PyObject *args){
 
     double min_r, max_r, min_i, max_i, resolution;
     Py_complex z;
-    complex float Z;
+    double complex Z;
 
     if(!PyArg_ParseTuple(args, "ddddDd", &min_r, &max_r, &min_i, &max_i, &z, &resolution)){
         return NULL;
@@ -15,7 +15,7 @@ static PyObject *_julia_Julia(PyObject *self, PyObject *args){
 
     Z = z.real + z.imag * I;
 
-    complex float *grid;
+    double complex *grid;
     int number_of_elements_in_grid;
     int *divergence_scores;
 

@@ -2,9 +2,9 @@
 #ifndef JULIA_H
 #define JULIA_H
 
-complex float* initialize_grid(float min_r, float max_r, float min_i, float max_i, float resolution, int number_of_elements_in_grid);
-int run_program(float min_r, float max_r, float min_i, float max_i, complex float z, float resolution);
-int* score_grid(complex float grid[], int number_of_elements_in_grid, complex float z); 
-int check_for_convergence(complex float cnum, complex float z);
+double complex* initialize_grid(double min_r, double max_r, double min_i, double max_i, double resolution, int number_of_elements_in_grid);
+int run_program(double min_r, double max_r, double min_i, double max_i, double complex z, double resolution);
+int* score_grid(double complex grid[], int number_of_elements_in_grid, double complex z); 
+int check_for_convergence(double complex cnum, double complex z);
 
 #endif
