@@ -33,4 +33,13 @@ Report bugs to josh@famestad.com.
 ``` 
 <br>
 Build and Install Python Module  
-`sudo python setup.py install`
+`sudo python setup.py install`  
+<br>
+```python
+#!/usr/bin/python
+
+import julia
+
+j = julia.Julia(-2, 2, -2, 2, 0.099997 + 0.619998j, .01)
+j.render()
+```
