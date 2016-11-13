@@ -10,8 +10,8 @@ This project can be built as a pure C standalone CLI utility or as a Python Modu
 Build C CLI Utility  
 `make`  
 <br>
-`[josh@sparky _julia]$ ./julia --help
-Usage: julia [OPTION...] 
+```[josh@sparky _julia]$ ./julia --help
+Usage: julia [OPTION...]  
 
   -i, --z_imag=z_imag        imaginary component of complex quantity z
   -r, --z_real=z_real        real component of complex quantity z
@@ -28,7 +28,7 @@ Usage: julia [OPTION...]
 Mandatory or optional arguments to long options are also mandatory or optional
 for any corresponding short options.
 
-Report bugs to josh@famestad.com.`  
+Report bugs to josh@famestad.com.```  
 <br>
 Build and Install Python Module  
 `sudo python setup.py install`
